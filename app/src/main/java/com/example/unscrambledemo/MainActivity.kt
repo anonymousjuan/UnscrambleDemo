@@ -56,6 +56,10 @@ fun GameScreen(){
     var score by remember {
         mutableStateOf(0)
     }
+    var scrambledWord by remember {
+        mutableStateOf(words[0].toList().joinToString(""))
+    }
+
 
 
 
@@ -70,7 +74,7 @@ fun GameScreen(){
             fontSize = 30.sp
         )
         Text(
-            text = correctAnswer,
+            text = scrambledWord,
             fontSize = 30.sp
         )
         Text(
@@ -95,9 +99,16 @@ fun GameScreen(){
                 if (userAnswer == correctAnswer){
                     score++
                     if (currentWordIndex < words.size - 1) {
+
                         currentWordIndex++
+
                         userAnswer = ""
+
+                        scrambledWord = words[currentWordIndex]
+                            .toList().shuffled()
+                            .joinToString("")
                     }
+
 
 
                 }
