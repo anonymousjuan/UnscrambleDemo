@@ -44,6 +44,10 @@ fun GameScreen(){
     var userAnswer by remember {
         mutableStateOf("")
     }
+    val correctAnswer = "CAT"
+    var score by remember {
+        mutableStateOf(0)
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -70,10 +74,17 @@ fun GameScreen(){
                 Text("Enter your answer")
             }
         )
+        Text(
+            text ="SCORE : $score"
+        )
 
 
         Button(
-            onClick = { }
+            onClick = {
+                if (userAnswer == correctAnswer){
+                    score++
+                }
+            }
         ) {
             Text("SUBMIT")
         }
